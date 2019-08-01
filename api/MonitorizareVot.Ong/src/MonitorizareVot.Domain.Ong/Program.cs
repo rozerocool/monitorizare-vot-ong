@@ -38,6 +38,8 @@ namespace MonitorizareVot.Domain.Ong
                 var context = serviceScope.ServiceProvider.GetService<VoteMonitorContext>();
                 logger.LogDebug($"Initializing Database...");
                 context.Database.EnsureCreated();
+                logger.LogDebug($"Migration started");
+                context.Database.Migrate();
                 logger.LogDebug($"Migration finished");
                 logger.LogDebug($"Initializing data seeding...");
                 context.EnsureSeedData();
